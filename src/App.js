@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react';
 
 function App() {
+  const [projects, setProjects] = useState(['Desenvolvimento web','Mobile'])
+  //useState retorna um array
+
+  function handleAddProject(){
+    setProjects([
+      ...projects,Date.now() 
+    ]) // o operador spread precisa existir para que o estado se mantenha atualizado e não sobescreva.
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+      <ul>
+          {projects.map(projetos => <li>{projetos}</li>)}
+          
+      </ul>
+      <button onClick={handleAddProject} type='button'>Adicionar projetos</button>
+      </>
     </div>
   );
 }
